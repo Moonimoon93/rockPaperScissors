@@ -61,3 +61,5 @@ const game5 = () => {
     console.log(`You won ${winStack} times.`);
     winStack = 0;
 }
+
+game5();
