@@ -1,27 +1,31 @@
-let computerChoice;
-const computerPlay = () => {
-    let rand = Math.floor((Math.random() * 3) + 1)
-    switch (rand) {
-        case 1:
-            computerChoice = "rock";
-            break;
-        case 2:
-            computerChoice = "paper";
-            break;
-        case 3:
-            computerChoice = "scissors"
-            break;
-    }
-}
-let playerChoice;
-const playerPlay = () => {
-    playerChoice = prompt('Rock, Paper, Scissors? Which one?').toLowerCase();
-    while (playerChoice !== "rock" && playerChoice !== "paper" && playerChoice !== "scissors") {
-        playerChoice = prompt("You had ONE job. Choose wisely this time.").toLowerCase();
-    }
-}
 let winStack = 0;
-const playRound = (computerSelection, playerSelection) => {
+const playRound = () => {
+    let computerSelection;
+    const computerPlay = () => {
+        let rand = Math.floor((Math.random() * 3) + 1)
+        switch (rand) {
+            case 1:
+                computerSelection = "rock";
+                break;
+            case 2:
+                computerSelection = "paper";
+                break;
+            case 3:
+                computerSelection = "scissors"
+                break;
+        }
+    }
+    computerPlay();
+
+    let playerSelection;
+    const playerPlay = () => {
+        playerSelection = prompt('Rock, Paper, Scissors? Which one?').toLowerCase();
+        while (playerSelection !== "rock" && playerSelection !== "paper" && playerSelection !== "scissors") {
+            playerSelection = prompt("You had ONE job. Choose wisely this time.").toLowerCase();
+        }
+    }
+    playerPlay();
+
     if (computerSelection === "rock") {
         if (playerSelection === "rock") {
             console.log(`Tied!`)
@@ -52,14 +56,22 @@ const playRound = (computerSelection, playerSelection) => {
     }
 }
 
-const game5 = () => {
-    for (let i = 0; i < 5; i++) {
-        computerPlay();
-        playerPlay();
-        playRound(computerChoice, playerChoice);
-    }
-    console.log(`You won ${winStack} times.`);
-    winStack = 0;
-}
+const rock_btn = document.querySelector("#rock-btn");
+const paper_btn = document.querySelector("#paper-btn");
+const scissors_btn = document.querySelector("#scissors-btn");
+rock_btn.addEventListener('click', playRound);
+paper_btn.addEventListener('click', playRound);
+scissors_btn.addEventListener('click', playRound);
 
-game5();
+//Removed game of 5 logic for now. (2022-03-21 21:33)
+// const game5 = () => {
+//     for (let i = 0; i < 5; i++) {
+//         computerPlay();
+//         playerPlay();
+//         playRound(computerChoice, playerChoice);
+//     }
+//     console.log(`You won ${winStack} times.`);
+//     winStack = 0;
+// }
+
+// game5();

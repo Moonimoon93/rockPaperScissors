@@ -11,12 +11,27 @@
 <body>
     <header>
         <div class="header">
-            <h1>The Triangle War</h1>
+            <h1 id="title">The Triangle War</h1>
         </div>
     </header>
     <main>
         <div class="instruction">
             <h2>Instruction</h2>
+            <ul>
+                <li>Rock beats Scissors</li>
+                <li>Paper beats Rock</li>
+                <li>Scissors beat Papaer</li>
+                <li>First to 5 wins</li>
+            </ul>
+        </div>
+        <div class="current-score">
+            <p>Player : <span id="player-score">0</span></p>
+            <p>Computer : <span id="computer-score">0</span></p>
+        </div>
+        <div class="control">
+            <button id="rock-btn" class="play-btn">Rock</button>
+            <button id="paper-btn" class="play-btn">Paper</button>
+            <button id="scissors-btn" class="play-btn">Scissors</button>
         </div>
     </main>
 
