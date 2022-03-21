@@ -1,4 +1,8 @@
-let winStack = 0;
+const computer_score_view = document.querySelector("#computer-score");
+const player_score_view = document.querySelector("#player-score");
+const result_view = document.querySelector("#result");
+let computer_score = 0;
+let player_score = 0;
 const playRound = () => {
     let computerSelection;
     const computerPlay = () => {
@@ -28,31 +32,50 @@ const playRound = () => {
 
     if (computerSelection === "rock") {
         if (playerSelection === "rock") {
-            console.log(`Tied!`)
+            result_view.textContent = "Tied";
         } else if (playerSelection === "paper") {
-            winStack++;
-            console.log(`You Win! ${playerSelection} beats ${computerSelection}`)
+            result_view.textContent = `You Win! ${playerSelection} beats ${computerSelection}`;
+            player_score++;
         } else {
-            console.log(`You Lose! ${computerSelection} beats ${playerSelection}`)
+            result_view.textContent = `You Lose! ${computerSelection} beats ${playerSelection}`;
+            computer_score++;
         }
     } else if (computerSelection === "paper") {
         if (playerSelection === "paper") {
-            console.log(`Tied!`)
+            result_view.textContent = "Tied";
         } else if (playerSelection === "scissors") {
-            winStack++;
-            console.log(`You Win! ${playerSelection} beats ${computerSelection}`)
+            result_view.textContent = `You Win! ${playerSelection} beats ${computerSelection}`;
+            player_score++;
         } else {
-            console.log(`You Lose! ${computerSelection} beats ${playerSelection}`)
+            result_view.textContent = `You Lose! ${computerSelection} beats ${playerSelection}`;
+            computer_score++;
         }
     } else {
         if (playerSelection === "scissors") {
-            console.log(`Tied!`)
+            result_view.textContent = "Tied";
         } else if (playerSelection === "rock") {
-            winStack++;
-            console.log(`You Win! ${playerSelection} beats ${computerSelection}`)
+            result_view.textContent = `You Win! ${playerSelection} beats ${computerSelection}`;
+            player_score++;
         } else {
-            console.log(`You Lose! ${computerSelection} beats ${playerSelection}`)
+            result_view.textContent = `You Lose! ${computerSelection} beats ${playerSelection}`;
+            computer_score++;
         }
+    }
+    player_score_view.textContent = player_score;
+    computer_score_view.textContent = computer_score;
+
+    if (player_score === 5) {
+        result_view.textContent = "YOU DID IT!";
+        player_score = 0;
+        computer_score = 0;
+        player_score_view.textContent = player_score;
+        computer_score_view.textContent = computer_score;
+    } else if (computer_score === 5) {
+        result_view.textContent = "YOU FAILED!"
+        player_score = 0;
+        computer_score = 0;
+        player_score_view.textContent = player_score;
+        computer_score_view.textContent = computer_score;
     }
 }
 
@@ -62,6 +85,7 @@ const scissors_btn = document.querySelector("#scissors-btn");
 rock_btn.addEventListener('click', playRound);
 paper_btn.addEventListener('click', playRound);
 scissors_btn.addEventListener('click', playRound);
+
 
 //Removed game of 5 logic for now. (2022-03-21 21:33)
 // const game5 = () => {
