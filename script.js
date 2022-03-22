@@ -1,9 +1,11 @@
 const computer_score_view = document.querySelector("#computer-score");
 const player_score_view = document.querySelector("#player-score");
 const result_view = document.querySelector("#result");
+
 let computer_score = 0;
 let player_score = 0;
-const playRound = () => {
+
+const playRound = (playerSelection) => {
     let computerSelection;
     const computerPlay = () => {
         let rand = Math.floor((Math.random() * 3) + 1)
@@ -21,14 +23,15 @@ const playRound = () => {
     }
     computerPlay();
 
-    let playerSelection;
-    const playerPlay = () => {
-        playerSelection = prompt('Rock, Paper, Scissors? Which one?').toLowerCase();
-        while (playerSelection !== "rock" && playerSelection !== "paper" && playerSelection !== "scissors") {
-            playerSelection = prompt("You had ONE job. Choose wisely this time.").toLowerCase();
-        }
-    }
-    playerPlay();
+    //Original Prompt Version
+    // let playerSelection;
+    // const playerPlay = () => {
+    //     playerSelection = prompt('Rock, Paper, Scissors? Which one?').toLowerCase();
+    //     while (playerSelection !== "rock" && playerSelection !== "paper" && playerSelection !== "scissors") {
+    //         playerSelection = prompt("You had ONE job. Choose wisely this time.").toLowerCase();
+    //     }
+    // }
+    // playerPlay();
 
     if (computerSelection === "rock") {
         if (playerSelection === "rock") {
@@ -82,9 +85,15 @@ const playRound = () => {
 const rock_btn = document.querySelector("#rock-btn");
 const paper_btn = document.querySelector("#paper-btn");
 const scissors_btn = document.querySelector("#scissors-btn");
-rock_btn.addEventListener('click', playRound);
-paper_btn.addEventListener('click', playRound);
-scissors_btn.addEventListener('click', playRound);
+rock_btn.addEventListener('click', () => {
+    playRound("rock");
+});
+paper_btn.addEventListener('click', () => {
+    playRound("paper");
+});
+scissors_btn.addEventListener('click', () => {
+    playRound("scissors");
+});
 
 
 //Removed game of 5 logic for now. (2022-03-21 21:33)
